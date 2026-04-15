@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Irina Marinescu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #111;
+      --mid: #555;
+      --faint: #999;
+      --rule: #e8e8e8;
+      --bg: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 0 48px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 80px;
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 80px;
+    }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    /* ── HERO ── */
+    #hero { margin-bottom: 80px; }
+
+    #hero h1 {
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    #hero p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--mid);
+      max-width: 52ch;
+      margin-bottom: 28px;
+    }
+
+    .cta-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: opacity 0.15s;
+    }
+    .cta-link:hover { opacity: 0.5; }
+
+    /* ── BACKGROUND ── */
+    .bg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .bg-item {
+      padding: 20px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .bg-item:nth-child(odd) { padding-right: 32px; }
+    .bg-item:nth-child(even) { padding-left: 32px; border-left: 1px solid var(--rule); }
+
+    .bg-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .bg-org {
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .bg-note {
+      font-size: 13px;
+      color: var(--faint);
+      line-height: 1.5;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .stat {
+      flex: 1;
+      padding: 24px 0;
+      border-right: 1px solid var(--rule);
+      padding-right: 32px;
+      margin-right: 32px;
+    }
+    .stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+    .stat-val {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--faint);
+      line-height: 1.4;
+    }
+
+    /* ── FOCUS ── */
+    .focus-list {
+      border-top: 1px solid var(--rule);
+    }
+
+    .focus-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 16px;
+    }
+
+    .focus-name {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .focus-note {
+      font-size: 13px;
+      color: var(--faint);
+      text-align: right;
+      max-width: 32ch;
+    }
+
+    /* ── WRITING ── */
+    .writing-list { border-top: 1px solid var(--rule); }
+
+    .writing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      gap: 16px;
+      transition: opacity 0.15s;
+    }
+    .writing-item:hover { opacity: 0.6; }
+
+    .writing-title {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .writing-source {
+      font-size: 13px;
+      color: var(--faint);
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 52ch;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.15s;
+    }
+    .contact-row:hover { opacity: 0.5; }
+
+    .contact-label { font-size: 13px; color: var(--faint); }
+    .contact-value { font-size: 14px; color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-size: 13px;
+      color: var(--faint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .bg-grid { grid-template-columns: 1fr; }
+      .bg-item:nth-child(even) { border-left: none; padding-left: 0; }
+      .stats-row { flex-wrap: wrap; }
+      .stat { flex: 1 1 40%; }
+      .focus-item { flex-direction: column; gap: 4px; }
+      .focus-note { text-align: left; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="/">Irina Marinescu</a>
+  <ul class="nav-links">
+    <li><a href="#background">Background</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <h1>Advisor at the intersection of crypto, AI, and infrastructure.</h1>
+  <p>
+    I work with founders, operators, and investors building on the parts of the stack
+    that regulation hasn't caught up to yet.
+  </p>
+  <a class="cta-link" href="#contact">Book an advisory call →</a>
+</section>
+
+<!-- ── BACKGROUND ── -->
+<section id="background">
+  <h2>Background</h2>
+  <div class="bg-grid">
+    <div class="bg-item">
+      <div class="bg-role">Partner</div>
+      <div class="bg-org">DLx Law PLLC</div>
+      <div class="bg-note">Crypto, AI, and infrastructure law.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-role">General Counsel</div>
+      <div class="bg-org">Gitcoin</div>
+      <div class="bg-note">Paradigm-backed. Built DAO governance frameworks adopted across the ecosystem.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-role">Co-founder &amp; CEO</div>
+      <div class="bg-org">buidlbox</div>
+      <div class="bg-note">Developer platform for web3 builders. Acquired by HackQuest.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-role">Structured Finance</div>
+      <div class="bg-org">Paul Hastings · Katten · Haynes Boone</div>
+      <div class="bg-note">$7B+ in transactions. Barclays Capital.</div>
+    </div>
+  </div>
+
+  <div class="stats-row" style="margin-top: 40px;">
+    <div class="stat">
+      <div class="stat-val">$7B+</div>
+      <div class="stat-lbl">structured finance transactions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">12+</div>
+      <div class="stat-lbl">years in crypto and digital asset law</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">NY · IL</div>
+      <div class="stat-lbl">bar admissions</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOCUS ── -->
+<section id="focus">
+  <h2>Where I Work</h2>
+  <div class="focus-list">
+    <div class="focus-item">
+      <span class="focus-name">Digital assets &amp; token regulation</span>
+      <span class="focus-note">GENIUS Act, SEC/CFTC, stablecoins, commercial law</span>
+    </div>
+    <div class="focus-item">
+      <span class="focus-name">AI governance &amp; agentic systems</span>
+      <span class="focus-note">Liability frameworks, world model risk, regulatory strategy</span>
+    </div>
+    <div class="focus-item">
+      <span class="focus-name">Data center &amp; HPC infrastructure</span>
+      <span class="focus-note">FERC co-location, power agreements, miner-to-HPC</span>
+    </div>
+    <div class="focus-item">
+      <span class="focus-name">DAO &amp; protocol governance</span>
+      <span class="focus-note">Entity structuring, token governance frameworks</span>
+    </div>
+    <div class="focus-item">
+      <span class="focus-name">Venture &amp; capital markets</span>
+      <span class="focus-note">Institutional strategy, deal structuring, diligence</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── WRITING ── -->
+<section id="writing">
+  <h2>Writing &amp; Appearances</h2>
+  <div class="writing-list">
+    <a class="writing-item" href="https://hackernoon.com/hackquest-acquires-buidlbox-to-accelerate-web3-developer-ecosystem-growth" target="_blank">
+      <span class="writing-title">HackQuest Acquires buidlbox</span>
+      <span class="writing-source">HackerNoon</span>
+    </a>
+    <a class="writing-item" href="https://www.youtube.com/watch?v=aGgWjwVRiGM" target="_blank">
+      <span class="writing-title">People Over Protocols</span>
+      <span class="writing-source">Rehash Podcast</span>
+    </a>
+    <a class="writing-item" href="https://codeandcounsel.substack.com" target="_blank">
+      <span class="writing-title">Code &amp; Counsel</span>
+      <span class="writing-source">Substack</span>
+    </a>
+    <a class="writing-item" href="https://hackernoon.com/an-interview-with-irina-marinescu-on-web3-ecosystem-building-and-the-mission-of-buidlbox" target="_blank">
+      <span class="writing-title">On Web3 Ecosystem Building &amp; buidlbox</span>
+      <span class="writing-source">HackerNoon</span>
+    </a>
+    <a class="writing-item" href="https://medium.com/@irinamarinescu" target="_blank">
+      <span class="writing-title">Essays &amp; Analysis</span>
+      <span class="writing-source">Medium</span>
+    </a>
+    <a class="writing-item" href="https://mirror.xyz/iamirina.eth" target="_blank">
+      <span class="writing-title">On-chain Writing</span>
+      <span class="writing-source">Mirror.xyz</span>
+    </a>
+    <a class="writing-item" href="https://daos.paradigm.xyz" target="_blank">
+      <span class="writing-title">DAO Governance Frameworks</span>
+      <span class="writing-source">Paradigm</span>
+    </a>
+    <a class="writing-item" href="https://business.cornell.edu/wp-content/uploads/sites/2/2022/12/Cornell_Convenes_white_paper_12.9.22-VD.pdf" target="_blank">
+      <span class="writing-title">Response to Executive Order on Digital Assets</span>
+      <span class="writing-source">Cornell Convenes · 2022</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-links">
+    <a class="contact-row" href="mailto:irina@fliwheel.xyz">
+      <span class="contact-label">Email</span>
+      <span class="contact-value">irina@fliwheel.xyz</span>
+    </a>
+    <a class="contact-row" href="https://www.linkedin.com/in/irinammarinescu" target="_blank">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">irinammarinescu</span>
+    </a>
+    <a class="contact-row" href="https://twitter.com/irinamarinescu" target="_blank">
+      <span class="contact-label">X / Twitter</span>
+      <span class="contact-value">@irinamarinescu</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Irina Marinescu</span>
+  <span>fliwheel.xyz</span>
+</footer>
+
+</body>
+</html>
