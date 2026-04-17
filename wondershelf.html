@@ -298,7 +298,7 @@ async function fetchCover(title,author,imgEl){
   }
   try{
     const q=encodeURIComponent(title);
-    const url='https://openlibrary.org/search.json?title='+q+'&limit=1&fields=cover_i';
+    const url='https://openlibrary.org/search.json?title='+q+'&author='+encodeURIComponent(author)+'&limit=1&fields=cover_i';
     const res=await fetch(url,{signal:AbortSignal.timeout(6000)});
     const data=await res.json();
     const id=data.docs?.[0]?.cover_i;
