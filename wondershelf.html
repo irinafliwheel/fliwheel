@@ -296,19 +296,32 @@ async function fetchCover(title,author,imgEl){
     if(coverCache[key])applyImg(imgEl,coverCache[key]);
     return;
   }
+  const signal=AbortSignal.timeout(6000);
   try{
+    // Try Open Library first
     const q=encodeURIComponent(title);
-    const url='https://openlibrary.org/search.json?title='+q+'&author='+encodeURIComponent(author)+'&limit=1&fields=cover_i';
-    const res=await fetch(url,{signal:AbortSignal.timeout(6000)});
-    const data=await res.json();
-    const id=data.docs?.[0]?.cover_i;
+    const aq=encodeURIComponent(author.split(',')[0].split('(')[0].trim());
+    const r=await fetch('https://openlibrary.org/search.json?title='+q+'&author='+aq+'&limit=1&fields=cover_i',{signal});
+    const d=await r.json();
+    const id=d.docs?.[0]?.cover_i;
     if(id){
       const src='https://covers.openlibrary.org/b/id/'+id+'-M.jpg';
-      coverCache[key]=src;
-      applyImg(imgEl,src);
-    }else{
-      coverCache[key]=null;
+      coverCache[key]=src;applyImg(imgEl,src);return;
     }
+  }catch(e){}
+  try{
+    // Fall back to Google Books
+    const q2=encodeURIComponent('intitle:'+title+' inauthor:'+author.split(' ').slice(-1)[0]);
+    const r2=await fetch('https://www.googleapis.com/books/v1/volumes?q='+q2+'&maxResults=1&fields=items(volumeInfo/imageLinks)',{signal:AbortSignal.timeout(6000)});
+    const d2=await r2.json();
+    const thumb=d2.items?.[0]?.volumeInfo?.imageLinks?.thumbnail;
+    if(thumb){
+      const src=thumb.replace('http:','https:').replace('&edge=curl','').replace('zoom=1','zoom=2');
+      coverCache[key]=src;applyImg(imgEl,src);return;
+    }
+  }catch(e){}
+  coverCache[key]=null;
+}
   }catch(e){
     coverCache[key]=null;
   }
