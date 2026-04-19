@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Raftul Minunilor — Cărți pentru Copii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF7F2;--cream2:#F4EEE6;--cream3:#EDE4D8;
+  --brown:#1A0D05;--brown2:#3D2410;--brown3:#7A5535;--brown4:#A8845A;--brown5:#D4B99A;
+  --gold:#C4922A;--gold-lt:#F5E9D0;
+  --silver:#8A8074;--silver-lt:#EDE9E3;
+  --ro:#8B1A1A;--ro-lt:#FDE8E8;--ro-mid:#C44040;
+  --tr:#1A5C8B;--tr-lt:#E5F0FA;--tr-mid:#378ADD;
+  --pic:#7A4E20;--pic-lt:#FAF0E4;--pic-mid:#D4935A;
+  --chp:#145C44;--chp-lt:#E8F5EF;--chp-mid:#4DAA80;
+  --nov:#312C8A;--nov-lt:#EEECFC;--nov-mid:#7F77DD;
+  --nf:#154A7A;--nf-lt:#E5F0FA;--nf-mid:#378ADD;
+  --poe:#6B2510;--poe-lt:#FAE8E4;--poe-mid:#C4624A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--brown);min-height:100vh}
+.site-header{padding:28px 28px 20px;border-bottom:1px solid var(--cream3)}
+.site-header h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:500;letter-spacing:-.3px}
+.site-header h1 span{color:var(--gold)}
+.tagline{font-size:13px;color:var(--brown4);margin-top:4px;font-style:italic}
+.attribution{font-size:11px;color:var(--brown4);margin-top:6px}
+.attribution a{color:var(--brown4);text-decoration:underline;text-underline-offset:2px}
+.attribution a:hover{color:var(--gold)}
+.lang-switch{display:inline-flex;gap:8px;margin-top:10px}
+.lang-switch a{font-size:11px;color:var(--brown3);text-decoration:none;padding:3px 10px;border:1px solid var(--cream3);border-radius:20px}
+.lang-switch a:hover{border-color:var(--brown4)}
+.lang-switch a.active{background:var(--brown2);color:var(--cream);border-color:var(--brown2)}
+.total-pill{font-size:12px;color:var(--brown3);background:var(--cream2);border:1px solid var(--cream3);border-radius:20px;padding:3px 10px;display:inline-block;margin-top:10px;margin-left:8px}
+.controls{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--cream3);padding:14px 28px 12px;display:flex;flex-direction:column;gap:10px}
+.age-row{display:flex;align-items:center;gap:14px}
+.age-label{font-size:12px;color:var(--brown3);white-space:nowrap;min-width:72px}
+.age-label strong{color:var(--brown);font-weight:500}
+.slider-wrap{position:relative;flex:1;height:36px;display:flex;align-items:center}
+.slider-track{position:absolute;left:0;right:0;height:4px;background:var(--cream3);border-radius:2px}
+.slider-fill{position:absolute;height:4px;background:var(--gold);border-radius:2px;pointer-events:none}
+.slider-wrap input[type=range]{position:absolute;width:100%;height:4px;background:transparent;-webkit-appearance:none;pointer-events:none;margin:0}
+.slider-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;background:var(--cream);border:2px solid var(--gold);border-radius:50%;cursor:pointer;pointer-events:all;transition:transform .15s}
+.slider-wrap input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15);background:var(--gold-lt)}
+.slider-wrap input[type=range]::-moz-range-thumb{width:22px;height:22px;background:var(--cream);border:2px solid var(--gold);border-radius:50%;cursor:pointer;pointer-events:all}
+.slider-wrap input[type=range]:focus{outline:none}
+.search-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#search{height:34px;flex:1;min-width:180px;border:1px solid var(--cream3);border-radius:8px;padding:0 14px;font-size:13px;background:#fff;color:var(--brown);outline:none;font-family:'Inter',sans-serif}
+#search:focus{border-color:var(--brown4)}
+.fmt-btns{display:flex;gap:5px;flex-wrap:wrap}
+.fb{height:30px;padding:0 12px;border:1px solid var(--cream3);border-radius:20px;font-size:12px;cursor:pointer;background:#fff;color:var(--brown3);font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.fb:hover{border-color:var(--brown4);color:var(--brown2)}
+.fb[data-f="All"].on{background:var(--brown2);color:var(--cream);border-color:var(--brown2)}
+.fb[data-f="ro"].on{background:var(--ro);color:#fff;border-color:var(--ro)}
+.fb[data-f="tr"].on{background:var(--tr);color:#fff;border-color:var(--tr)}
+.fb.pic.on{background:var(--pic);color:#fff;border-color:var(--pic)}
+.fb.chp.on{background:var(--chp);color:#fff;border-color:var(--chp)}
+.fb.nov.on{background:var(--nov);color:#fff;border-color:var(--nov)}
+.fb.poe.on{background:var(--poe);color:#fff;border-color:var(--poe)}
+.theme-row{display:flex;gap:5px;flex-wrap:wrap}
+.th{height:24px;padding:0 10px;border-radius:20px;border:1px solid var(--cream3);font-size:11px;cursor:pointer;background:#fff;color:var(--brown3);font-family:'Inter',sans-serif;transition:all .15s}
+.th:hover{border-color:var(--brown4);color:var(--brown2)}
+.th.on{background:var(--gold-lt);border-color:var(--gold);color:var(--brown2);font-weight:500}
+.stat-bar{padding:8px 28px;font-size:12px;color:var(--brown4);display:flex;align-items:center;gap:10px}
+.clear-btn{font-size:11px;color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:2px;background:none;border:none;font-family:'Inter',sans-serif;padding:0}
+.clear-btn:hover{color:var(--brown2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px;padding:8px 28px 16px}
+.card{border:1px solid var(--cream3);border-radius:10px;background:#fff;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,box-shadow .2s;position:relative;cursor:pointer}
+.card:hover{border-color:var(--brown5);box-shadow:0 3px 14px rgba(26,13,5,.08)}
+.card-link{position:absolute;inset:0;z-index:1}
+.cover-wrap{position:relative;width:100%;height:110px;overflow:hidden;flex-shrink:0}
+.cover-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;text-align:center;padding:8px;line-height:1.4}
+.pic .cover-ph{background:var(--pic-lt);color:var(--pic)}
+.chp .cover-ph{background:var(--chp-lt);color:var(--chp)}
+.nov .cover-ph{background:var(--nov-lt);color:var(--nov)}
+.nf  .cover-ph{background:var(--nf-lt);color:var(--nf)}
+.poe .cover-ph{background:var(--poe-lt);color:var(--poe)}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:none}
+.award{position:absolute;top:7px;right:7px;width:19px;height:19px;border-radius:50%;font-size:9px;font-weight:600;display:flex;align-items:center;justify-content:center;z-index:2}
+.award.R{background:var(--ro-lt);color:var(--ro);border:1px solid var(--ro-mid)}
+.origin-chip{position:absolute;top:7px;left:7px;font-size:9px;font-weight:500;padding:2px 6px;border-radius:4px;z-index:2}
+.origin-ro{background:var(--ro-lt);color:var(--ro);border:1px solid var(--ro-mid)}
+.origin-tr{background:var(--tr-lt);color:var(--tr);border:1px solid var(--tr-mid)}
+.card-body{padding:9px 10px 10px;display:flex;flex-direction:column;gap:5px}
+.card-title{font-size:12px;font-weight:500;color:var(--brown);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-family:'Playfair Display',serif}
+.card-author{font-size:11px;color:var(--brown3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:1px}
+.age-chip{font-size:10px;color:var(--brown4);border:1px solid var(--cream3);border-radius:4px;padding:1px 5px;flex-shrink:0}
+.t-chip{font-size:10px;border-radius:10px;padding:1px 7px}
+.pic .t-chip{background:var(--pic-lt);color:var(--pic)}
+.chp .t-chip{background:var(--chp-lt);color:var(--chp)}
+.nov .t-chip{background:var(--nov-lt);color:var(--nov)}
+.nf  .t-chip{background:var(--nf-lt);color:var(--nf)}
+.poe .t-chip{background:var(--poe-lt);color:var(--poe)}
+.more-wrap{text-align:center;padding:8px 28px 32px}
+#load-more{padding:10px 32px;border:1px solid var(--cream3);border-radius:20px;font-size:13px;cursor:pointer;background:#fff;color:var(--brown3);font-family:'Inter',sans-serif;transition:all .15s}
+#load-more:hover{background:var(--brown2);color:var(--cream);border-color:var(--brown2)}
+#load-more.hidden{display:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:8px 28px 6px;font-size:11px;color:var(--brown4);border-top:1px solid var(--cream3)}
+.lg{display:flex;align-items:center;gap:4px}
+.ld{width:9px;height:9px;border-radius:50%}
+footer{padding:24px 28px;border-top:1px solid var(--cream3);background:var(--cream2);margin-top:8px}
+.ft p{font-size:12px;color:var(--brown3);line-height:1.7;margin-bottom:8px}
+.ft p:last-child{margin-bottom:0}
+.ft a{color:var(--gold);text-decoration:none}
+.ft a:hover{text-decoration:underline}
+.disclosure{font-size:11px;color:var(--brown4);padding-top:10px;border-top:1px solid var(--cream3);margin-top:4px}
+.empty{grid-column:1/-1;text-align:center;padding:60px 0;color:var(--brown4)}
+.empty p{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px}
+@media(max-width:600px){
+  .site-header,.controls,.grid,.stat-bar,.legend,.more-wrap,footer{padding-left:16px;padding-right:16px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .site-header h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Raftul <span>Minunilor</span></h1>
+  <p class="tagline">O bibliotecă curatorizată de cărți pentru copii — de la primele povești la marea literatură</p>
+  <p class="attribution">Inspirat de <a href="https://thechildslibrary.com" target="_blank" rel="noopener">The Children’s Library</a> a lui Jesse Genet</p>
+  <div>
+    <span class="lang-switch">
+      <a href="/wondershelf/">English</a>
+      <a href="/wondershelf/ro/" class="active">Română</a>
+    </span>
+    <span class="total-pill">159 cărți</span>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="age-row">
+    <span class="age-label">Vârsta&nbsp;<strong id="age-display">0 &ndash; 14</strong></span>
+    <div class="slider-wrap">
+      <div class="slider-track"></div>
+      <div class="slider-fill" id="slider-fill"></div>
+      <input type="range" id="age-min" min="0" max="14" value="0" step="1">
+      <input type="range" id="age-max" min="0" max="14" value="14" step="1">
+    </div>
+  </div>
+  <div class="search-row">
+    <input id="search" type="search" placeholder="Caută titluri, autori…" autocomplete="off">
+    <div class="fmt-btns">
+      <button class="fb on" data-f="All">Toate</button>
+      <button class="fb" data-f="ro" style="border-color:var(--ro-mid);color:var(--ro)">Originale românești</button>
+      <button class="fb" data-f="tr" style="border-color:var(--tr-mid);color:var(--tr)">Traduceri clasice</button>
+    </div>
+  </div>
+  <div class="search-row">
+    <div class="fmt-btns">
+      <button class="fb pic" data-f="Picture Book">Cărți ilustrate</button>
+      <button class="fb chp" data-f="Chapter Book">Povestiri</button>
+      <button class="fb nov" data-f="Novel">Romane</button>
+      <button class="fb poe" data-f="Poetry">Poezie</button>
+    </div>
+  </div>
+  <div class="theme-row" id="theme-row"></div>
+</div>
+
+<div class="legend">
+  <span class="lg"><span class="ld" style="background:var(--ro-lt);border:1px solid var(--ro-mid)"></span>Canon românesc</span>
+  <span class="lg"><span class="ld" style="background:var(--tr-lt);border:1px solid var(--tr-mid)"></span>Traducere</span>
+  <span class="lg"><span class="ld" style="background:var(--nov-lt);border:1px solid var(--nov-mid)"></span>Roman</span>
+  <span class="lg"><span class="ld" style="background:var(--chp-lt);border:1px solid var(--chp-mid)"></span>Povestire</span>
+  <span class="lg"><span class="ld" style="background:var(--pic-lt);border:1px solid var(--pic-mid)"></span>Carte ilustrată</span>
+  <span class="lg"><span class="ld" style="background:var(--poe-lt);border:1px solid var(--poe-mid)"></span>Poezie</span>
+</div>
+
+<div class="stat-bar">
+  <span id="stat-text"></span>
+  <button class="clear-btn" id="clear-btn" style="display:none" onclick="clearFilters()">Șterge filtrele</button>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="more-wrap"><button id="load-more" class="hidden" onclick="showMore()">Mai multe cărți</button></div>
+
+<footer>
+  <div class="ft">
+    <p>Raftul Minunilor este un proiect personal de curatorizare — 159 de cărți selectate din canonul românesc, basme populare, literatura clasică universală și cărți contemporane românești pentru copii.</p>
+    <p><a href="/wondershelf/">← The WonderShelf (English)</a> &middot; <a href="https://fliwheel.xyz">← Fliwheel</a></p>
+    <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. Copertele sunt preluate de la Open Library și Google Books.</p>
+  </div>
+</footer>
+
+<script>
+const AMAZON_TAG = 'fliwheel20-20';
+const BOOKS=[{"t":"Amintiri din copilărie","a":"Ion Creangă","f":"Novel","r":"8-14","lo":8,"hi":14,"x":["humor","family","heritage"],"b":"R","y":1892,"s":"ro"},{"t":"Harap-Alb","a":"Ion Creangă","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["courage","adventure","wonder"],"b":"R","y":1877,"s":"ro"},{"t":"Punguța cu doi bani","a":"Ion Creangă","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["justice","humor","courage"],"b":"R","y":1875,"s":"ro"},{"t":"Capra cu trei iezi","a":"Ion Creangă","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["family","courage","wisdom"],"b":"R","y":1875,"s":"ro"},{"t":"Povestea lui Harap-Alb","a":"Ion Creangă","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["courage","loyalty","wonder"],"b":"R","y":1877,"s":"ro"},{"t":"Fata babei și fata moșneagului","a":"Ion Creangă","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["kindness","justice","perseverance"],"b":"R","y":1877,"s":"ro"},{"t":"Povestea porcului","a":"Ion Creangă","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["wonder","courage","love"],"b":"R","y":1876,"s":"ro"},{"t":"Dănilă Prepeleac","a":"Ion Creangă","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["humor","wonder","self-reliance"],"b":"R","y":1876,"s":"ro"},{"t":"Ivan Turbincă","a":"Ion Creangă","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["humor","courage","adventure"],"b":"R","y":1878,"s":"ro"},{"t":"Stan Pățitul","a":"Ion Creangă","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["humor","wisdom","self-reliance"],"b":"R","y":1877,"s":"ro"},{"t":"Mos Ion Roată și Unirea","a":"Ion Creangă","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["heritage","humor","justice"],"b":"R","y":1880,"s":"ro"},{"t":"Povestea lui Ionică cel Prost","a":"Ion Creangă","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["humor","wonder","courage"],"b":"R","y":1877,"s":"ro"},{"t":"Legendele sau basmele românilor","a":"Petre Ispirescu","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["wonder","courage","heritage"],"b":"R","y":1872,"s":"ro"},{"t":"Tinerețe fără bătrânețe și viață fără de moarte","a":"Petre Ispirescu","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["wonder","courage","adventure"],"b":"R","y":1862,"s":"ro"},{"t":"Greuceanu","a":"Petre Ispirescu","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["courage","wonder","loyalty"],"b":"R","y":1872,"s":"ro"},{"t":"Prâslea cel Voinic și merele de aur","a":"Petre Ispirescu","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["courage","adventure","wonder"],"b":"R","y":1872,"s":"ro"},{"t":"Făt-Frumos din lacrimă","a":"Petre Ispirescu","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["courage","wonder","love"],"b":"R","y":1872,"s":"ro"},{"t":"Aleodor Împărat","a":"Petre Ispirescu","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["courage","loyalty","adventure"],"b":"R","y":1872,"s":"ro"},{"t":"Ileana Cosânzeana","a":"Petre Ispirescu","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["wonder","courage","love"],"b":"R","y":1872,"s":"ro"},{"t":"Zâna Zorilor","a":"Petre Ispirescu","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["wonder","courage","justice"],"b":"R","y":1872,"s":"ro"},{"t":"Luceafărul","a":"Mihai Eminescu","f":"Poetry","r":"10-14","lo":10,"hi":14,"x":["wonder","love","heritage"],"b":"R","y":1883,"s":"ro"},{"t":"Poezii pentru copii","a":"Mihai Eminescu","f":"Poetry","r":"8-14","lo":8,"hi":14,"x":["wonder","imagination","heritage"],"b":"R","y":1883,"s":"ro"},{"t":"Făt-Frumos din tei","a":"Mihai Eminescu","f":"Poetry","r":"8-12","lo":8,"hi":12,"x":["wonder","courage","heritage"],"b":"R","y":1875,"s":"ro"},{"t":"Călin (file din poveste)","a":"Mihai Eminescu","f":"Poetry","r":"10-14","lo":10,"hi":14,"x":["wonder","love","heritage"],"b":"R","y":1876,"s":"ro"},{"t":"Cartea cu jucării","a":"Tudor Arghezi","f":"Poetry","r":"4-8","lo":4,"hi":8,"x":["humor","wonder","imagination"],"b":"R","y":1931,"s":"ro"},{"t":"Cuvinte potrivite","a":"Tudor Arghezi","f":"Poetry","r":"5-10","lo":5,"hi":10,"x":["imagination","wonder","creativity"],"b":"R","y":1927,"s":"ro"},{"t":"Prisaca","a":"Tudor Arghezi","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["wonder","family","heritage"],"b":"R","y":1946,"s":"ro"},{"t":"Buruieni","a":"Tudor Arghezi","f":"Poetry","r":"8-12","lo":8,"hi":12,"x":["wonder","imagination","heritage"],"b":"R","y":1957,"s":"ro"},{"t":"Dumbrava minunată","a":"Mihail Sadoveanu","f":"Novel","r":"6-10","lo":6,"hi":10,"x":["wonder","imagination","family"],"b":"R","y":1926,"s":"ro"},{"t":"Neamul Șoimăreștilor","a":"Mihail Sadoveanu","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","heritage","loyalty"],"b":"R","y":1915,"s":"ro"},{"t":"Baltagul","a":"Mihail Sadoveanu","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["courage","justice","family"],"b":"R","y":1930,"s":"ro"},{"t":"Hanul Ancuței","a":"Mihail Sadoveanu","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["heritage","wisdom","wonder"],"b":"R","y":1928,"s":"ro"},{"t":"Bunica","a":"Barbu Ștefănescu Delavrancea","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["family","love","heritage"],"b":"R","y":1890,"s":"ro"},{"t":"Bunicul","a":"Barbu Ștefănescu Delavrancea","f":"Chapter Book","r":"7-12","lo":7,"hi":12,"x":["family","heritage","humor"],"b":"R","y":1890,"s":"ro"},{"t":"Domnul Vucea","a":"Barbu Ștefănescu Delavrancea","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["humor","family","heritage"],"b":"R","y":1890,"s":"ro"},{"t":"Bubico","a":"Ion Luca Caragiale","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["humor","family","wonder"],"b":"R","y":1893,"s":"ro"},{"t":"D-l Goe","a":"Ion Luca Caragiale","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["humor","family","heritage"],"b":"R","y":1893,"s":"ro"},{"t":"Vizită","a":"Ion Luca Caragiale","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["humor","family","heritage"],"b":"R","y":1892,"s":"ro"},{"t":"Ion","a":"Liviu Rebreanu","f":"Novel","r":"12-14","lo":12,"hi":14,"x":["courage","family","heritage"],"b":"R","y":1920,"s":"ro"},{"t":"La Medeleni","a":"Ionel Teodoreanu","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["family","wonder","heritage"],"b":"R","y":1925,"s":"ro"},{"t":"Cartea cu Apolodor","a":"Gellu Naum","f":"Poetry","r":"4-8","lo":4,"hi":8,"x":["humor","adventure","wonder"],"b":"R","y":1959,"s":"ro"},{"t":"Cărțile cu Apolodor","a":"Gellu Naum","f":"Poetry","r":"4-9","lo":4,"hi":9,"x":["humor","adventure","imagination"],"b":"R","y":1963,"s":"ro"},{"t":"Fabule","a":"Grigore Alexandrescu","f":"Poetry","r":"8-12","lo":8,"hi":12,"x":["wisdom","justice","humor"],"b":"R","y":1842,"s":"ro"},{"t":"Fefeleaga","a":"Ion Agârbiceanu","f":"Chapter Book","r":"10-14","lo":10,"hi":14,"x":["courage","family","perseverance"],"b":"R","y":1910,"s":"ro"},{"t":"Legendele Olimpului: Zeii","a":"Alexandru Mitru","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","heritage","courage"],"b":"R","y":1960,"s":"ro"},{"t":"Legendele Olimpului: Eroii","a":"Alexandru Mitru","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","adventure","heritage"],"b":"R","y":1960,"s":"ro"},{"t":"Năzdrăvăniile lui Nastratin Hogea","a":"Octav Pancu-Iași","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["humor","wisdom","wonder"],"b":"R","y":1960,"s":"ro"},{"t":"Guguță","a":"Spiridon Vangheli","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["humor","adventure","family"],"b":"R","y":1966,"s":"ro"},{"t":"Guguță căpitan de corabie","a":"Spiridon Vangheli","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["imagination","humor","adventure"],"b":"R","y":1979,"s":"ro"},{"t":"Fram, ursul polar","a":"Cezar Petrescu","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["loyalty","courage","wonder"],"b":"R","y":1931,"s":"ro"},{"t":"Apolodor","a":"Gellu Naum","f":"Poetry","r":"4-9","lo":4,"hi":9,"x":["humor","adventure","wonder"],"b":"R","y":1959,"s":"ro"},{"t":"Înșir-te, Mărgărite","a":"Victor Eftimiu","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","wonder","heritage"],"b":"R","y":1911,"s":"ro"},{"t":"Sânziana și Pepelea","a":"Vasile Alecsandri","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["love","courage","wonder"],"b":"R","y":1881,"s":"ro"},{"t":"Ciocoii vechi și noi","a":"Nicolae Filimon","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["justice","heritage","courage"],"b":"R","y":1863,"s":"ro"},{"t":"Povești nemuritoare (Vol. 1-15)","a":"Colectiv","f":"Chapter Book","r":"6-12","lo":6,"hi":12,"x":["wonder","courage","heritage"],"b":"R","y":1966,"s":"ro"},{"t":"Zana Computerului","a":"Adina Popescu","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["imagination","courage","wonder"],"b":"","y":2017,"s":"ro"},{"t":"Ocolul lumii în 80 de povești","a":"Adina Popescu","f":"Novel","r":"7-12","lo":7,"hi":12,"x":["adventure","heritage","wonder"],"b":"","y":2019,"s":"ro"},{"t":"Eu nu sunt Nessie","a":"Ioana Nicolaie","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["courage","self-reliance","wonder"],"b":"","y":2014,"s":"ro"},{"t":"Nori de vată de zahăr","a":"Ioana Nicolaie","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["imagination","wonder","humor"],"b":"","y":2015,"s":"ro"},{"t":"Prâslea și veverița","a":"Simona Epure","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["friendship","wonder","kindness"],"b":"","y":2016,"s":"ro"},{"t":"Sufletul meu de copil","a":"Lavinia Braniște","f":"Novel","r":"6-10","lo":6,"hi":10,"x":["family","wonder","courage"],"b":"","y":2018,"s":"ro"},{"t":"La drum cu tata","a":"Ioana Chicet-Macoveiciuc","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["family","adventure","humor"],"b":"","y":2019,"s":"ro"},{"t":"Monstrul din dulap","a":"Cristina Andone","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["courage","imagination","humor"],"b":"","y":2014,"s":"ro"},{"t":"Crizantemă nu vrea la școală","a":"Cristina Andone","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["courage","wonder","friendship"],"b":"","y":2016,"s":"ro"},{"t":"Micul Prinț","a":"Antoine de Saint-Exupéry","f":"Novel","r":"8-14","lo":8,"hi":14,"x":["wonder","loyalty","love"],"b":"","y":1943,"s":"tr"},{"t":"Pinocchio","a":"Carlo Collodi","f":"Novel","r":"6-10","lo":6,"hi":10,"x":["honesty","courage","family"],"b":"","y":1883,"s":"tr"},{"t":"Winnie de Pluș","a":"A. A. Milne","f":"Chapter Book","r":"3-7","lo":3,"hi":7,"x":["friendship","wonder","loyalty"],"b":"","y":1926,"s":"tr"},{"t":"Aventurile lui Tom Sawyer","a":"Mark Twain","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["adventure","humor","courage"],"b":"","y":1876,"s":"tr"},{"t":"Aventurile lui Huckleberry Finn","a":"Mark Twain","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["adventure","courage","justice"],"b":"","y":1884,"s":"tr"},{"t":"Pippi Șosețica","a":"Astrid Lindgren","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["self-reliance","adventure","humor"],"b":"","y":1945,"s":"tr"},{"t":"Mica sirenă","a":"Hans Christian Andersen","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["love","courage","wonder"],"b":"","y":1837,"s":"tr"},{"t":"Soldățelul de plumb","a":"Hans Christian Andersen","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["courage","loyalty","love"],"b":"","y":1838,"s":"tr"},{"t":"Rățușca cea urâtă","a":"Hans Christian Andersen","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["perseverance","wonder","courage"],"b":"","y":1844,"s":"tr"},{"t":"Crăiasa Zăpezii","a":"Hans Christian Andersen","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["courage","loyalty","wonder"],"b":"","y":1844,"s":"tr"},{"t":"Cenușăreasa","a":"Charles Perrault","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["kindness","courage","wonder"],"b":"","y":1697,"s":"tr"},{"t":"Scufița Roșie","a":"Charles Perrault","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["courage","family","wonder"],"b":"","y":1697,"s":"tr"},{"t":"Frumoasa din Pădurea Adormită","a":"Charles Perrault","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["wonder","courage","love"],"b":"","y":1697,"s":"tr"},{"t":"Albă ca Zăpada","a":"Frații Grimm","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["kindness","courage","wonder"],"b":"","y":1812,"s":"tr"},{"t":"Hansel și Gretel","a":"Frații Grimm","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["courage","family","adventure"],"b":"","y":1812,"s":"tr"},{"t":"Motanul încălțat","a":"Charles Perrault","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["self-reliance","humor","courage"],"b":"","y":1697,"s":"tr"},{"t":"Alice în Țara Minunilor","a":"Lewis Carroll","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","imagination","adventure"],"b":"","y":1865,"s":"tr"},{"t":"Peter Pan","a":"J. M. Barrie","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["wonder","adventure","imagination"],"b":"","y":1911,"s":"tr"},{"t":"Cartea Junglei","a":"Rudyard Kipling","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["adventure","courage","loyalty"],"b":"","y":1894,"s":"tr"},{"t":"Vrăjitorul din Oz","a":"L. Frank Baum","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["adventure","courage","self-reliance"],"b":"","y":1900,"s":"tr"},{"t":"Mary Poppins","a":"P. L. Travers","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["wonder","imagination","family"],"b":"","y":1934,"s":"tr"},{"t":"Charlie și fabrica de ciocolată","a":"Roald Dahl","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["wonder","adventure","imagination"],"b":"","y":1964,"s":"tr"},{"t":"Matilda","a":"Roald Dahl","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["courage","justice","creativity"],"b":"","y":1988,"s":"tr"},{"t":"Vrăjitoarele","a":"Roald Dahl","f":"Chapter Book","r":"8-12","lo":8,"hi":12,"x":["courage","adventure","wonder"],"b":"","y":1983,"s":"tr"},{"t":"James și piersica uriașă","a":"Roald Dahl","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["adventure","courage","imagination"],"b":"","y":1961,"s":"tr"},{"t":"Hobbit-ul","a":"J.R.R. Tolkien","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["adventure","courage","loyalty"],"b":"","y":1937,"s":"tr"},{"t":"Leul, Vrăjitoarea și Dulapul","a":"C. S. Lewis","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","faith","wonder"],"b":"","y":1950,"s":"tr"},{"t":"Prințul și cerșetorul","a":"Mark Twain","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["justice","courage","wonder"],"b":"","y":1881,"s":"tr"},{"t":"Robinson Crusoe","a":"Daniel Defoe","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["self-reliance","courage","perseverance"],"b":"","y":1719,"s":"tr"},{"t":"Cele o mie și una de nopți","a":"Anonim","f":"Novel","r":"8-14","lo":8,"hi":14,"x":["wonder","imagination","courage"],"b":"","y":1700,"s":"tr"},{"t":"Nils Holgersson","a":"Selma Lagerlöf","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["adventure","wonder","courage"],"b":"","y":1907,"s":"tr"},{"t":"Copiii căpitanului Grant","a":"Jules Verne","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["adventure","courage","loyalty"],"b":"","y":1868,"s":"tr"},{"t":"Douăzeci de mii de leghe sub mări","a":"Jules Verne","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["adventure","wonder","courage"],"b":"","y":1870,"s":"tr"},{"t":"Ocolul lumii în optzeci de zile","a":"Jules Verne","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["adventure","courage","humor"],"b":"","y":1872,"s":"tr"},{"t":"Insula misterioasă","a":"Jules Verne","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","self-reliance","wonder"],"b":"","y":1874,"s":"tr"},{"t":"Cei trei mușchetari","a":"Alexandre Dumas","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["courage","loyalty","adventure"],"b":"","y":1844,"s":"tr"},{"t":"Contele de Monte-Cristo","a":"Alexandre Dumas","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["courage","justice","self-reliance"],"b":"","y":1844,"s":"tr"},{"t":"Heidi","a":"Johanna Spyri","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["family","wonder","courage"],"b":"","y":1881,"s":"tr"},{"t":"Principele fericit","a":"Oscar Wilde","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["kindness","justice","wonder"],"b":"","y":1888,"s":"tr"},{"t":"Colții albi","a":"Jack London","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","wonder","loyalty"],"b":"","y":1906,"s":"tr"},{"t":"Chemarea străbunilor","a":"Jack London","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["adventure","courage","wonder"],"b":"","y":1903,"s":"tr"},{"t":"Oliver Twist","a":"Charles Dickens","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["courage","justice","family"],"b":"","y":1838,"s":"tr"},{"t":"Colț Alb","a":"Jack London","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","loyalty","wonder"],"b":"","y":1906,"s":"tr"},{"t":"Singur pe lume","a":"Hector Malot","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","perseverance","loyalty"],"b":"","y":1878,"s":"tr"},{"t":"Prinț și cerșetor","a":"Mark Twain","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["justice","courage","wonder"],"b":"","y":1882,"s":"tr"},{"t":"Minunata călătorie a lui Nils Holgersson","a":"Selma Lagerlöf","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["adventure","wonder","courage"],"b":"","y":1907,"s":"tr"},{"t":"Ursulețul Paddington","a":"Michael Bond","f":"Chapter Book","r":"4-8","lo":4,"hi":8,"x":["adventure","family","humor"],"b":"","y":1958,"s":"tr"},{"t":"Cuore — Inimă de copil","a":"Edmondo De Amicis","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["kindness","courage","family"],"b":"","y":1886,"s":"tr"},{"t":"Povestirile lui Andersen","a":"Hans Christian Andersen","f":"Chapter Book","r":"5-12","lo":5,"hi":12,"x":["wonder","courage","kindness"],"b":"","y":1835,"s":"tr"},{"t":"Bambi","a":"Felix Salten","f":"Novel","r":"7-11","lo":7,"hi":11,"x":["wonder","courage","family"],"b":"","y":1923,"s":"tr"},{"t":"Mowgli","a":"Rudyard Kipling","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["adventure","courage","loyalty"],"b":"","y":1894,"s":"tr"},{"t":"Fetele doctorului March","a":"Louisa May Alcott","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["family","courage","self-reliance"],"b":"","y":1868,"s":"tr"},{"t":"Prințesa și mazărea","a":"Hans Christian Andersen","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["wonder","humor","heritage"],"b":"","y":1835,"s":"tr"},{"t":"Degetica","a":"Hans Christian Andersen","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["courage","wonder","adventure"],"b":"","y":1835,"s":"tr"},{"t":"Haina nouă a împăratului","a":"Hans Christian Andersen","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["honesty","humor","courage"],"b":"","y":1837,"s":"tr"},{"t":"Cei doisprezece ani de școală ai Maricăi","a":"Ion Minulescu","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["family","courage","humor"],"b":"R","y":1936,"s":"ro"},{"t":"Harry Potter și Piatra Filosofală","a":"J.K. Rowling","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","adventure","friendship"],"b":"","y":1997,"s":"tr"},{"t":"Harry Potter și Camera Secretelor","a":"J.K. Rowling","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","adventure","loyalty"],"b":"","y":1998,"s":"tr"},{"t":"Harry Potter și Prizonierul din Azkaban","a":"J.K. Rowling","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","loyalty","wonder"],"b":"","y":1999,"s":"tr"},{"t":"Micile femei","a":"Louisa May Alcott","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["family","courage","self-reliance"],"b":"","y":1868,"s":"tr"},{"t":"Anna de la Green Gables","a":"L. M. Montgomery","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["family","imagination","self-reliance"],"b":"","y":1908,"s":"tr"},{"t":"Pollyanna","a":"Eleanor H. Porter","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["kindness","perseverance","family"],"b":"","y":1913,"s":"tr"},{"t":"Prințul cel Mic","a":"Antoine de Saint-Exupéry","f":"Novel","r":"8-14","lo":8,"hi":14,"x":["wonder","loyalty","love"],"b":"","y":1943,"s":"tr"},{"t":"Grădina secretă","a":"Frances Hodgson Burnett","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","self-reliance","family"],"b":"","y":1911,"s":"tr"},{"t":"Prințesa Sara","a":"Frances Hodgson Burnett","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","perseverance","kindness"],"b":"","y":1905,"s":"tr"},{"t":"Emil din Lönneberga","a":"Astrid Lindgren","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["humor","family","wonder"],"b":"","y":1963,"s":"tr"},{"t":"Frații Leul","a":"Astrid Lindgren","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","loyalty","family"],"b":"","y":1973,"s":"tr"},{"t":"Mio, fiul meu","a":"Astrid Lindgren","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["wonder","courage","family"],"b":"","y":1954,"s":"tr"},{"t":"Ronja, fiica hoțului","a":"Astrid Lindgren","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","family","loyalty"],"b":"","y":1981,"s":"tr"},{"t":"Inimă de tâlhar","a":"Astrid Lindgren","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","loyalty","family"],"b":"","y":1981,"s":"tr"},{"t":"Cheița de aur sau aventurile lui Burattino","a":"Aleksei Tolstoi","f":"Chapter Book","r":"5-9","lo":5,"hi":9,"x":["adventure","humor","courage"],"b":"","y":1936,"s":"tr"},{"t":"Aventurile lui Cipollino","a":"Gianni Rodari","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["justice","courage","humor"],"b":"","y":1951,"s":"tr"},{"t":"Doctorul Aumă","a":"Kornei Ciukovski","f":"Chapter Book","r":"4-8","lo":4,"hi":8,"x":["kindness","adventure","courage"],"b":"","y":1929,"s":"tr"},{"t":"Ursul Paddington","a":"Michael Bond","f":"Chapter Book","r":"4-8","lo":4,"hi":8,"x":["adventure","family","humor"],"b":"","y":1958,"s":"tr"},{"t":"Povestea fără sfârșit","a":"Michael Ende","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["imagination","courage","wonder"],"b":"","y":1979,"s":"tr"},{"t":"Momo","a":"Michael Ende","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["courage","wonder","friendship"],"b":"","y":1973,"s":"tr"},{"t":"Mumin — Pălăria vrăjitorului","a":"Tove Jansson","f":"Chapter Book","r":"6-10","lo":6,"hi":10,"x":["family","adventure","wonder"],"b":"","y":1948,"s":"tr"},{"t":"Cronicile din Narnia","a":"C. S. Lewis","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","faith","wonder"],"b":"","y":1950,"s":"tr"},{"t":"Baronul Münchhausen","a":"Rudolf Erich Raspe","f":"Chapter Book","r":"7-11","lo":7,"hi":11,"x":["humor","imagination","adventure"],"b":"","y":1785,"s":"tr"},{"t":"Tom și Jerry — Povești","a":"Hanna-Barbera","f":"Picture Book","r":"4-8","lo":4,"hi":8,"x":["humor","adventure","wonder"],"b":"","y":1965,"s":"tr"},{"t":"Coliba unchiului Tom","a":"Harriet Beecher Stowe","f":"Novel","r":"11-14","lo":11,"hi":14,"x":["courage","justice","faith"],"b":"","y":1852,"s":"tr"},{"t":"Regele Artur și Cavalerii Mesei Rotunde","a":"Howard Pyle","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","justice","loyalty"],"b":"","y":1903,"s":"tr"},{"t":"Robin Hood","a":"Howard Pyle","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["justice","courage","adventure"],"b":"","y":1883,"s":"tr"},{"t":"Comoara din insulă","a":"Robert Louis Stevenson","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["adventure","courage","loyalty"],"b":"","y":1883,"s":"tr"},{"t":"Don Quijote pentru copii","a":"Miguel de Cervantes","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["wonder","courage","humor"],"b":"","y":1605,"s":"tr"},{"t":"Familia Robinson","a":"Johann David Wyss","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["family","self-reliance","adventure"],"b":"","y":1812,"s":"tr"},{"t":"Colțișor","a":"Jack London","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","loyalty","wonder"],"b":"","y":1906,"s":"tr"},{"t":"Fiul căpitanului","a":"Mayne Reid","f":"Novel","r":"9-13","lo":9,"hi":13,"x":["adventure","courage","self-reliance"],"b":"","y":1858,"s":"tr"},{"t":"Indienii din Copacul Mare","a":"Fenimore Cooper","f":"Novel","r":"10-14","lo":10,"hi":14,"x":["courage","loyalty","adventure"],"b":"","y":1826,"s":"tr"},{"t":"Zece negri mititei","a":"Agatha Christie","f":"Novel","r":"8-12","lo":8,"hi":12,"x":["courage","wonder","justice"],"b":"","y":1939,"s":"tr"},{"t":"Poezii — Antologie pentru copii","a":"Mihai Eminescu","f":"Poetry","r":"8-14","lo":8,"hi":14,"x":["wonder","heritage","imagination"],"b":"R","y":1880,"s":"ro"},{"t":"Tatăl meu era ucigaș de zmei","a":"Adina Rosetti","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["family","imagination","courage"],"b":"","y":2013,"s":"ro"},{"t":"Bicicleta lui Fereluciurci","a":"Adina Rosetti","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["imagination","humor","adventure"],"b":"","y":2015,"s":"ro"},{"t":"Căpitanul Dorel, eroul cartierului","a":"Adina Rosetti","f":"Picture Book","r":"5-9","lo":5,"hi":9,"x":["courage","humor","friendship"],"b":"","y":2017,"s":"ro"},{"t":"Plimbărica","a":"Ana Blandiana","f":"Poetry","r":"4-8","lo":4,"hi":8,"x":["wonder","imagination","family"],"b":"R","y":1987,"s":"ro"}];
+</script>
+<script>
+
+var cache = {};
+var queue = [];
+var active = 0;
+var MAX_ACTIVE = 3;
+
+function enqueue(card) {
+  var key = card.dataset.t + '|' + card.dataset.a;
+  if (key in cache) {
+    if (cache[key]) applyCover(card, cache[key]);
+    return;
+  }
+  queue.push(card);
+  drain();
+}
+
+function drain() {
+  while (active < MAX_ACTIVE && queue.length > 0) {
+    var card = queue.shift();
+    var key = card.dataset.t + '|' + card.dataset.a;
+    if (key in cache) {
+      if (cache[key]) applyCover(card, cache[key]);
+      continue;
+    }
+    cache[key] = 'loading';
+    active++;
+    fetchCoverForCard(card, function() { active--; drain(); });
+  }
+}
+
+function applyCover(card, src) {
+  var img = card.querySelector('.cover-img');
+  var ph = card.querySelector('.cover-ph');
+  if (!img || !ph) return;
+  img.onload = function() {
+    img.onload = null; img.onerror = null;
+    if (img.naturalWidth > 2 && img.naturalHeight > 2) {
+      img.style.display = 'block';
+      ph.style.display = 'none';
+    }
+  };
+  img.onerror = null;
+  img.src = src;
+}
+
+function fetchCoverForCard(card, done) {
+  var title = card.dataset.t;
+  var author = card.dataset.a;
+  var key = title + '|' + author;
+  var shortTitle = title.replace(/\s*:.*/, '').replace(/\(.*\)/, '').trim();
+  var authorClean = author.replace(/,.*$/, '').replace(/\(.*\)/, '').trim();
+  var lastName = authorClean.split(' ').filter(function(w) { return w.length > 1; }).pop() || '';
+
+  var q1 = encodeURIComponent(shortTitle + ' ' + lastName);
+  apiCall(
+    'https://openlibrary.org/search.json?q=' + q1 + '&fields=cover_i&limit=5',
+    function(d) {
+      var coverId = extractCoverId(d);
+      if (coverId) {
+        var src = 'https://covers.openlibrary.org/b/id/' + coverId + '-M.jpg';
+        cache[key] = src;
+        applyCover(card, src);
+        done();
+      } else { tryStep2(card, title, shortTitle, lastName, key, done); }
+    },
+    function() { tryStep2(card, title, shortTitle, lastName, key, done); }
+  );
+}
+
+function tryStep2(card, title, shortTitle, lastName, key, done) {
+  var q2 = encodeURIComponent(shortTitle);
+  apiCall(
+    'https://openlibrary.org/search.json?q=' + q2 + '&fields=cover_i&limit=5',
+    function(d) {
+      var coverId = extractCoverId(d);
+      if (coverId) {
+        var src = 'https://covers.openlibrary.org/b/id/' + coverId + '-M.jpg';
+        cache[key] = src;
+        applyCover(card, src);
+        done();
+      } else { tryStep3(card, title, shortTitle, lastName, key, done); }
+    },
+    function() { tryStep3(card, title, shortTitle, lastName, key, done); }
+  );
+}
+
+function tryStep3(card, title, shortTitle, lastName, key, done) {
+  var q3 = encodeURIComponent('"' + shortTitle + '" ' + lastName);
+  apiCall(
+    'https://www.googleapis.com/books/v1/volumes?q=' + q3 + '&maxResults=1&printType=books&fields=items(volumeInfo/imageLinks)',
+    function(d) {
+      var src = null;
+      if (d && d.items) {
+        for (var i = 0; i < d.items.length; i++) {
+          var lnks = d.items[i] && d.items[i].volumeInfo && d.items[i].volumeInfo.imageLinks;
+          if (lnks) {
+            var raw = lnks.thumbnail || lnks.smallThumbnail || '';
+            if (raw) { src = raw.replace('http:', 'https:').replace('&edge=curl', ''); break; }
+          }
+        }
+      }
+      if (src) { cache[key] = src; applyCover(card, src); }
+      else { cache[key] = null; }
+      done();
+    },
+    function() { cache[key] = null; done(); }
+  );
+}
+
+function extractCoverId(data) {
+  if (!data || !data.docs) return null;
+  for (var i = 0; i < data.docs.length; i++) {
+    if (data.docs[i].cover_i) return data.docs[i].cover_i;
+  }
+  return null;
+}
+
+function apiCall(url, onOk, onErr) {
+  var x = new XMLHttpRequest();
+  x.open('GET', url, true);
+  x.timeout = 10000;
+  x.onload = function() {
+    if (x.status >= 200 && x.status < 300) {
+      try { onOk(JSON.parse(x.responseText)); } catch(e) { onErr(); }
+    } else { onErr(); }
+  };
+  x.onerror = onErr;
+  x.ontimeout = onErr;
+  x.send();
+}
+
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { enqueue(e.target); io.unobserve(e.target); }
+  });
+}, { rootMargin: '600px' });
+
+</script>
+<script>
+var THEMES_RO = {
+  'wonder':'minune','courage':'curaj','family':'familie','adventure':'aventură',
+  'humor':'umor','loyalty':'loialitate','imagination':'imaginație',
+  'self-reliance':'independență','perseverance':'perseverență',
+  'heritage':'moștenire','justice':'dreptate','creativity':'creativitate',
+  'friendship':'prietenie','kindness':'bunătate','faith':'credință',
+  'honesty':'onestitate','love':'iubire','wisdom':'înțelepciune'
+};
+var THEMES=['wonder','courage','family','adventure','humor','loyalty','imagination','self-reliance','perseverance','heritage','justice','creativity','friendship','kindness','faith','honesty','love','wisdom'];
+var FMT_CLS={'Picture Book':'pic','Chapter Book':'chp','Novel':'nov','Non-Fiction':'nf','Poetry':'poe'};
+var FMT_RO={'Picture Book':'Carte ilustrată','Chapter Book':'Povestire','Novel':'Roman','Non-Fiction':'Non-ficțiune','Poetry':'Poezie'};
+
+var ageMin=0,ageMax=14,activeF='All',activeS=null,activeT=null,searchQ='',shown=72,filtered=[];
+
+var thRow=document.getElementById('theme-row');
+THEMES.forEach(function(t){
+  if (!THEMES_RO[t]) return;
+  var b=document.createElement('button');
+  b.className='th';b.textContent=THEMES_RO[t];b.dataset.t=t;
+  b.onclick=function(){
+    if(activeT===t){activeT=null;b.classList.remove('on');}
+    else{thRow.querySelectorAll('.th').forEach(function(x){x.classList.remove('on');});activeT=t;b.classList.add('on');}
+    shown=72;render();
+  };
+  thRow.appendChild(b);
+});
+
+document.querySelectorAll('.fb').forEach(function(b){
+  b.onclick=function(){
+    var f=b.dataset.f;
+    /* Source filters (ro/tr) */
+    if(f==='ro'||f==='tr'){
+      if(activeS===f){activeS=null;b.classList.remove('on');}
+      else{
+        document.querySelectorAll('.fb[data-f="ro"],.fb[data-f="tr"],.fb[data-f="All"]').forEach(function(x){x.classList.remove('on');});
+        activeS=f;b.classList.add('on');
+      }
+    }
+    /* Format filters */
+    else if(f==='All'){
+      activeF='All';activeS=null;
+      document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+    }
+    else{
+      if(activeF===f){activeF='All';b.classList.remove('on');document.querySelector('.fb[data-f="All"]').classList.add('on');}
+      else{
+        document.querySelectorAll('.fb.pic,.fb.chp,.fb.nov,.fb.poe,.fb[data-f="All"]').forEach(function(x){x.classList.remove('on');});
+        activeF=f;b.classList.add('on');
+      }
+    }
+    shown=72;render();
+  };
+});
+
+document.getElementById('search').addEventListener('input',function(e){
+  searchQ=e.target.value.toLowerCase().trim();shown=72;render();
+});
+
+var slMin=document.getElementById('age-min');
+var slMax=document.getElementById('age-max');
+var fillEl=document.getElementById('slider-fill');
+var ageDisp=document.getElementById('age-display');
+function syncSlider(){
+  var lo=+slMin.value,hi=+slMax.value;
+  fillEl.style.left=(lo/14*100)+'%';
+  fillEl.style.width=((hi-lo)/14*100)+'%';
+  ageDisp.innerHTML=lo===hi?lo+' ani':lo+' &ndash; '+hi;
+}
+slMin.addEventListener('input',function(){
+  if(+slMin.value>+slMax.value)slMin.value=slMax.value;
+  ageMin=+slMin.value;syncSlider();shown=72;render();
+});
+slMax.addEventListener('input',function(){
+  if(+slMax.value<+slMin.value)slMax.value=slMin.value;
+  ageMax=+slMax.value;syncSlider();shown=72;render();
+});
+syncSlider();
+
+function clearFilters(){
+  ageMin=0;ageMax=14;slMin.value=0;slMax.value=14;syncSlider();
+  activeF='All';activeS=null;activeT=null;searchQ='';
+  document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on');});
+  document.querySelector('.fb[data-f="All"]').classList.add('on');
+  thRow.querySelectorAll('.th').forEach(function(x){x.classList.remove('on');});
+  document.getElementById('search').value='';
+  shown=72;render();
+}
+
+function amazonURL(t,a){
+  return'https://www.amazon.com/s?k='+encodeURIComponent(t+' '+a.replace(/,.*/,'').trim().split(' ').slice(0,2).join(' '))+'&tag='+AMAZON_TAG;
+}
+
+function render(){
+  filtered=BOOKS.filter(function(b){
+    if(activeS&&b.s!==activeS)return false;
+    if(activeF!=='All'&&b.f!==activeF)return false;
+    if(b.lo>ageMax||b.hi<ageMin)return false;
+    if(activeT&&b.x.indexOf(activeT)<0)return false;
+    if(searchQ&&b.t.toLowerCase().indexOf(searchQ)<0&&b.a.toLowerCase().indexOf(searchQ)<0)return false;
+    return true;
+  });
+  document.getElementById('clear-btn').style.display=(ageMin>0||ageMax<14||activeF!=='All'||activeS||activeT||searchQ)?'':'none';
+  document.getElementById('stat-text').textContent=filtered.length+' cărți';
+  var slice=filtered.slice(0,shown);
+  var g=document.getElementById('grid');
+  if(!slice.length){
+    g.innerHTML='<div class="empty"><p>Nicio carte găsită</p><span>Încearcă să lărgești intervalul de vârstă sau să ștergi filtrele</span></div>';
+    document.getElementById('load-more').classList.add('hidden');
+    return;
+  }
+  g.innerHTML=slice.map(function(b){
+    var cls=FMT_CLS[b.f]||'nov';
+    var badge=b.b==='R'?'<div class="award R">R</div>':'';
+    var origin=b.s==='ro'?'<div class="origin-chip origin-ro">RO</div>':'<div class="origin-chip origin-tr">TR</div>';
+    var chips=b.x.slice(0,2).map(function(t){return'<span class="t-chip">'+(THEMES_RO[t]||t)+'</span>';}).join('');
+    var sT=b.t.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+    var sA=b.a.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+    return(
+      '<div class="card '+cls+'" data-t="'+sT+'" data-a="'+sA+'">'
+        +'<a class="card-link" href="'+amazonURL(b.t,b.a)+'" target="_blank" rel="noopener sponsored"></a>'
+        +badge+origin
+        +'<div class="cover-wrap">'
+          +'<img class="cover-img" alt="'+sT+'">'
+          +'<div class="cover-ph">'+(FMT_RO[b.f]||b.f)+'</div>'
+        +'</div>'
+        +'<div class="card-body">'
+          +'<div class="card-title">'+b.t+'</div>'
+          +'<div class="card-author">'+b.a+'</div>'
+          +'<div class="card-meta"><span class="age-chip">'+b.r+'</span>'+chips+'</div>'
+        +'</div>'
+      +'</div>'
+    );
+  }).join('');
+  g.querySelectorAll('.card').forEach(function(c){io.observe(c);});
+  var rem=filtered.length-shown;
+  var btn=document.getElementById('load-more');
+  if(rem>0){btn.classList.remove('hidden');btn.textContent='Mai multe ('+rem+' rămase)';}
+  else btn.classList.add('hidden');
+}
+
+function showMore(){shown+=120;render();}
+render();
+</script>
+</body>
+</html>
