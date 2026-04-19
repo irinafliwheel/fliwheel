@@ -16,6 +16,7 @@
       --faint: #999;
       --rule: #e8e8e8;
       --bg: #fff;
+      --warm: #C4922A;
     }
 
     html { scroll-behavior: smooth; }
@@ -64,9 +65,7 @@
     .nav-links a:hover { color: var(--ink); }
 
     /* ── SECTIONS ── */
-    section {
-      margin-bottom: 80px;
-    }
+    section { margin-bottom: 80px; }
 
     h2 {
       font-size: 13px;
@@ -123,24 +122,9 @@
     .bg-item:nth-child(odd) { padding-right: 32px; }
     .bg-item:nth-child(even) { padding-left: 32px; border-left: 1px solid var(--rule); }
 
-    .bg-role {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 3px;
-    }
-
-    .bg-org {
-      font-size: 13px;
-      color: var(--mid);
-      margin-bottom: 6px;
-    }
-
-    .bg-note {
-      font-size: 13px;
-      color: var(--faint);
-      line-height: 1.5;
-    }
+    .bg-role { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+    .bg-org { font-size: 13px; color: var(--mid); margin-bottom: 6px; }
+    .bg-note { font-size: 13px; color: var(--faint); line-height: 1.5; }
 
     /* ── STATS ── */
     .stats-row {
@@ -158,24 +142,11 @@
     }
     .stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
 
-    .stat-val {
-      font-size: 28px;
-      font-weight: 300;
-      color: var(--ink);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-lbl {
-      font-size: 12px;
-      color: var(--faint);
-      line-height: 1.4;
-    }
+    .stat-val { font-size: 28px; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+    .stat-lbl { font-size: 12px; color: var(--faint); line-height: 1.4; }
 
     /* ── FOCUS ── */
-    .focus-list {
-      border-top: 1px solid var(--rule);
-    }
+    .focus-list { border-top: 1px solid var(--rule); }
 
     .focus-item {
       display: flex;
@@ -186,17 +157,8 @@
       gap: 16px;
     }
 
-    .focus-name {
-      font-size: 15px;
-      color: var(--ink);
-    }
-
-    .focus-note {
-      font-size: 13px;
-      color: var(--faint);
-      text-align: right;
-      max-width: 32ch;
-    }
+    .focus-name { font-size: 15px; color: var(--ink); }
+    .focus-note { font-size: 13px; color: var(--faint); text-align: right; max-width: 32ch; }
 
     /* ── WRITING ── */
     .writing-list { border-top: 1px solid var(--rule); }
@@ -214,15 +176,59 @@
     }
     .writing-item:hover { opacity: 0.6; }
 
-    .writing-title {
+    .writing-title { font-size: 15px; color: var(--ink); }
+    .writing-source { font-size: 13px; color: var(--faint); flex-shrink: 0; }
+
+    /* ── PROJECTS ── */
+    .projects-list { border-top: 1px solid var(--rule); }
+
+    .project-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      gap: 24px;
+      transition: opacity 0.15s;
+    }
+    .project-item:hover { opacity: 0.65; }
+
+    .project-left { flex: 1; }
+
+    .project-name {
       font-size: 15px;
+      font-weight: 500;
       color: var(--ink);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .writing-source {
+    .project-lang {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--warm);
+      border: 1px solid currentColor;
+      border-radius: 3px;
+      padding: 1px 5px;
+      letter-spacing: 0.03em;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.55;
+      max-width: 42ch;
+    }
+
+    .project-meta {
       font-size: 13px;
       color: var(--faint);
       flex-shrink: 0;
+      padding-top: 3px;
     }
 
     /* ── CONTACT ── */
@@ -267,10 +273,7 @@
       align-items: center;
     }
 
-    footer span {
-      font-size: 13px;
-      color: var(--faint);
-    }
+    footer span { font-size: 13px; color: var(--faint); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 520px) {
@@ -281,6 +284,7 @@
       .focus-item { flex-direction: column; gap: 4px; }
       .focus-note { text-align: left; }
       nav .nav-links { display: none; }
+      .project-item { flex-direction: column; gap: 4px; }
     }
   </style>
 </head>
@@ -291,6 +295,7 @@
   <ul class="nav-links">
     <li><a href="#background">Background</a></li>
     <li><a href="#writing">Writing</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -299,11 +304,12 @@
 <section id="hero">
   <h1>Advancing the frontier of AI, crypto and the infrastructure powering both.</h1>
   <p>
-    I've worked at the frontier of emerging technology for over a decade — as counsel, as a founder, and as an operator. I helped build governance frameworks that became industry standard for shepherding open source protocols in crypto, and most recently co-founded and sold a hackathon platform for web3 builders. Previously I spent nearly a decade in BigLaw with preceding stints at the SEC, World Bank, Federal Court and Barclays during the GFC. 
-
-I am happiest collaborating on hard problems. The operative lens through which I view my contributions is how they benefit our next generation.
+    I've worked at the frontier of emerging technology for over a decade — as counsel, as a founder, and as an operator. I helped build governance frameworks that became industry standard for shepherding open source protocols in crypto, and most recently co-founded and sold a hackathon platform for web3 builders. Previously I spent nearly a decade in BigLaw with preceding stints at the SEC, World Bank, Federal Court and Barclays during the GFC.
   </p>
-  <a class="cta-link" href="https://calendly.com/irina_buidls/" target="_blank">Let's chat →</a>
+  <p style="margin-top: 16px;">
+    I am happiest collaborating on hard problems. The operative lens through which I view my contributions is how they benefit our next generation.
+  </p>
+  <a class="cta-link" style="display: inline-block; margin-top: 28px;" href="https://calendly.com/irina_buidls/" target="_blank">Let's chat →</a>
 </section>
 
 <!-- ── BACKGROUND ── -->
@@ -414,11 +420,47 @@ I am happiest collaborating on hard problems. The operative lens through which I
   </div>
 </section>
 
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <h2>Side Projects</h2>
+  <p style="font-size:14px;color:var(--faint);margin-bottom:20px;font-weight:300;">
+    Things I build because I love them, not because anyone asked me to.
+  </p>
+  <div class="projects-list">
+
+    <a class="project-item" href="/wondershelf/">
+      <div class="project-left">
+        <div class="project-name">
+          The WonderShelf
+          <span class="project-lang">EN</span>
+        </div>
+        <div class="project-desc">
+          A curated library of 1,391 books for children ages 0–14 — organized by age, theme, and format. Drawn from Newbery and Caldecott records, Charlotte Mason tradition, and the western classical canon.
+        </div>
+      </div>
+      <div class="project-meta">fliwheel.xyz/wondershelf</div>
+    </a>
+
+    <a class="project-item" href="/wondershelf/ro/">
+      <div class="project-left">
+        <div class="project-name">
+          Raftul Minunilor
+          <span class="project-lang">RO</span>
+        </div>
+        <div class="project-desc">
+          Versiunea românească — 159 de cărți selectate din canonul românesc și traducerile clasice iubite în România. Pentru Stella și toți copiii care cresc între două lumi.
+        </div>
+      </div>
+      <div class="project-meta">fliwheel.xyz/wondershelf/ro</div>
+    </a>
+
+  </div>
+</section>
+
 <!-- ── CONTACT ── -->
 <section id="contact">
   <h2>Contact</h2>
   <div class="contact-links">
-    
     <a class="contact-row" href="https://www.linkedin.com/in/irinammarinescu" target="_blank">
       <span class="contact-label">LinkedIn</span>
       <span class="contact-value">irinammarinescu</span>
