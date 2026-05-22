@@ -2,11 +2,13 @@
 
 ## Who I am
 
-Irina Marinescu is a lawyer, founder, and operator with over a decade at the frontier of emerging technology. She is a Partner at DLx Law PLLC (New York and Illinois bars), a boutique practice focused on digital assets, AI, and infrastructure law. She previously served as General Counsel at Gitcoin (Paradigm-backed), where she built DAO governance frameworks that became industry standard for open source crypto protocols. She co-founded and served as CEO of buidlbox, a developer platform for web3 builders that was acquired by HackQuest. Earlier in her career she spent nearly a decade in BigLaw (Paul Hastings, Katten, Haynes Boone) on $7B+ in structured finance transactions, with preceding roles at the SEC, World Bank, federal court, and Barclays Capital during the global financial crisis.
+Irina Marinescu is a lawyer, founder, and operator with over a decade at the frontier of emerging technology. She is a Partner at DLx Law PLLC (New York and Illinois bars), a boutique practice focused on digital assets, AI, and infrastructure law. She is also an Advisor to the Advanced AI Society (AAIS) on applied AI and agentic systems standards and responsible deployment frameworks for frontier AI.
+
+She previously served as General Counsel at Gitcoin (Paradigm-backed), where she built DAO governance frameworks that became industry standard for open source crypto protocols. She co-founded and served as CEO of buidlbox, a developer platform for web3 builders that was acquired by HackQuest. Earlier in her career she spent nearly a decade in BigLaw (Paul Hastings, Katten, Haynes Boone) on $7B+ in structured finance transactions, with earlier roles at the SEC, World Bank, federal court, and Barclays Capital during the global financial crisis.
 
 ## What I do
 
-Irina advises founders, operators, and investors building at the intersection of crypto, AI, and infrastructure — where regulation hasn't caught up to the technology yet. Her work spans:
+Irina works at the frontier of crypto, AI, and infrastructure — where regulation hasn't caught up to the technology yet. Her focus areas include:
 
 - Digital asset regulation: token structuring, GENIUS Act, SEC/CFTC classification, stablecoin frameworks, commercial law
 - AI governance and agentic systems: liability frameworks, world model risk, regulatory strategy for AI-native ventures
@@ -14,23 +16,34 @@ Irina advises founders, operators, and investors building at the intersection of
 - DAO and protocol governance: entity structuring, token governance frameworks
 - Venture and capital markets: institutional strategy, deal structuring, diligence
 
+## Ventures
+
+- Glade (in formation): A nature-immersed K–6 school in Bergen County, NJ forming technically formidable, morally imperturbable, and entrepreneurially sovereign young people. Founding families forming now. https://glade.fliwheel.xyz
+
+## Projects
+
+- The WonderShelf: A curated library of 1,391 books for children ages 0–14, organized by age, theme, and format. Drawn from Newbery and Caldecott records, Charlotte Mason tradition, and the western classical canon. https://fliwheel.xyz/wondershelf.html
+- Raftul Minunilor: Romanian-language edition — 159 books selected from the Romanian canon and beloved classic translations, for children growing up between two worlds. https://fliwheel.xyz/ro/
+
 ## Writing and appearances
 
+- Building AI Infrastructure for Autonomous Systems and AI Agents (Data Center World, 2026): https://schedule.datacenterworld.com/session/building-ai-infrastructure-for-autonomous-systems-and-ai-agents/919560
+- HackQuest Acquires buidlbox (HackerNoon): https://hackernoon.com/hackquest-acquires-buidlbox-to-accelerate-web3-developer-ecosystem-growth
+- People Over Protocols (Rehash Podcast): https://www.youtube.com/watch?v=aGgWjwVRiGM
 - Code & Counsel (Substack): https://codeandcounsel.substack.com
+- On Web3 Ecosystem Building & buidlbox (HackerNoon): https://hackernoon.com/an-interview-with-irina-marinescu-on-web3-ecosystem-building-and-the-mission-of-buidlbox
 - Essays & Analysis (Medium): https://medium.com/@irinamarinescu
 - On-chain Writing (Mirror.xyz): https://mirror.xyz/iamirina.eth
 - DAO Governance Frameworks (Paradigm): https://daos.paradigm.xyz
-- People Over Protocols (Rehash Podcast): https://www.youtube.com/watch?v=aGgWjwVRiGM
-- HackQuest Acquires buidlbox (HackerNoon): https://hackernoon.com/hackquest-acquires-buidlbox-to-accelerate-web3-developer-ecosystem-growth
 - Response to Executive Order on Digital Assets (Cornell Convenes, 2022): https://business.cornell.edu/wp-content/uploads/sites/2/2022/12/Cornell_Convenes_white_paper_12.9.22-VD.pdf
 
 ## Contact
 
-- Email: irina@fliwheel.xyz
 - LinkedIn: https://www.linkedin.com/in/irinammarinescu
 - X / Twitter: https://twitter.com/irinamarinescu
-- Book a call: https://calendly.com/irina_buidls/
+- Schedule a call: https://calendly.com/irina_buidls/
+- Email: irina@fliwheel.xyz
 
-## Affiliation
+## Affiliation note
 
-Irina Marinescu is a Partner at DLx Law PLLC. Advisory engagements through fliwheel.xyz are distinct from legal representation. Attorney-client relationships are formed only through DLx Law.
+Irina Marinescu is a Partner at DLx Law PLLC. Engagements through fliwheel.xyz are distinct from legal representation. Attorney-client relationships are formed only through DLx Law.
